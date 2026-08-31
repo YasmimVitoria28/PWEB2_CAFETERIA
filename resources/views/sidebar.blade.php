@@ -1,21 +1,24 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#">SIG-ACAD</a>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Início</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('aluno') }}">Aluno</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div class="text-center mb-4">
+    <h5>Grão de Ouro</h5>
+    <span class="badge bg-warning text-dark">Administrador</span>
+</div>
+<hr>
+<ul class="nav flex-column gap-2">
+
+    <li class="nav-item">
+        <a href="{{ url('/post') }}" class="nav-link {{ request()->is('post*') ? 'active-coffee' : '' }} rounded p-2">
+            <i class="bi bi-file-earmark-post me-2"></i> Pedidos
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url('/produto') }}" class="nav-link {{ request()->is('produto*') ? 'active-coffee' : '' }} rounded p-2">
+            <i class="bi bi-cup-hot me-2"></i> Produtos
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url('/usuario') }}" class="nav-link {{ request()->is('usuario*') ? 'active-coffee' : '' }} rounded p-2">
+            <i class="bi bi-people me-2"></i> Usuários
+        </a>
+    </li>
+</ul>
+<hr>

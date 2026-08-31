@@ -13,7 +13,7 @@ class Produto extends Model
     protected $fillable = [
         'nome',
         'preco_unit',
-        'categoria_id',
+        'categoria',
     ];
             
 }
