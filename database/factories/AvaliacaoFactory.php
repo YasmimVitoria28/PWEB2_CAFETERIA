@@ -3,22 +3,17 @@
 namespace Database\Factories;
 
 use App\Models\Avaliacao;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<produto>
- */
+
 class AvaliacaoFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+
     public function definition(): array
     {
          return [
-            
+            'produto_id' => Post::factory(),
             'nota' => $this->faker->randomElement(['⭐⭐⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐', '⭐⭐', '⭐']), 
             'comentario' => $this->faker->paragraph(),
             

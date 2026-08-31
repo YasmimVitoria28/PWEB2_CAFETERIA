@@ -6,26 +6,29 @@ use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<pedido>
+ * @extends Factory<Post>
  */
 class PostFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * 
-     *      $table->integer('numero_cafe',150);
-            $table->string('nome',150);
-            $table->decimal('valor_t',16);
-     * 
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
-         return [
-            'numero_pedido' => fake()->numerify(),
-            'valor_t' => fake()->numerify('R$ ##,##'),
-            'nome' => fake()->name(),
-                ];
+
+        $comidas = [
+            'Expresso',
+            'Cappuccino',
+            'Pão de queijo',
+            'Croissant',
+            'Bolo de cenoura com chocolate',
+            'Cookie de chocolate',
+            'Café americano',
+            'Café gelado',
+            'Mocca',
+        ];
+
+        return [
+            'numero_pedido' => fake()->numberBetween(1, 1000),// número de pedidos
+            'valor_t' => fake()->randomFloat(2, 10, 200 ),// decimal e até 200
+            'nome' => fake()->randomElement($comidas),
+        ];
     }
 }
