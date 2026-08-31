@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model
+class Post extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nome',
-        'email',
-        'telefone',
-        'login',
-        'senha',
-    ];
-
-    protected $hidden = [
-        'senha',
-    ];
+        'numero_pedido',
+        'valor_t',
+        'nome',    ];
+            
 }
+

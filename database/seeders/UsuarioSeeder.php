@@ -7,7 +7,6 @@ use App\Models\Usuario;
 
 class UsuarioSeeder extends Seeder
 {
-
     public function run(): void
     {
         Usuario::factory()->count(5)->create();

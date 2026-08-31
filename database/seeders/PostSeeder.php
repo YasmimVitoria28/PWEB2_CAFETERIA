@@ -3,15 +3,15 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Aluno;
+use App\Models\Post;
 
-class AlunoSeeder extends Seeder
+class PostSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Aluno::factory()->count(5)->create();
+        Post::factory()->count(5)->create();
     }
 }

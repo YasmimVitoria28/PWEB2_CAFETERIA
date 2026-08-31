@@ -2,27 +2,22 @@
 
 namespace Database\Factories;
 
-use App\Models\Aluno;
+use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Aluno>
+ * @extends Factory<Usuario>
  */
-class AlunoFactory extends Factory
+class UsuarioFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
-         return [
+        return [
             'nome' => fake()->name(),
-            'email' => fake()->email(),
+            'email' => fake()->unique()->safeEmail(),
             'telefone' => fake()->phoneNumber(),
-            'login' => fake()->name(),
-            'senha' => fake()->password(),
+            'login' => fake()->userName(),
+            'senha' => bcrypt('senha123'),
         ];
     }
 }

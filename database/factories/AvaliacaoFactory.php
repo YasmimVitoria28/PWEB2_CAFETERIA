@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Avaliacao;/*MUDAR */
+use App\Models\Avaliacao;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<produto>
  */
-class produtoFactory extends Factory
+class AvaliacaoFactory extends Factory
 {
     /**
      * Define the model's default state.

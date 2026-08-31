@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produto', function (Blueprint $table) {
+        Schema::create('avaliacao', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('produto_id');/*armazena o id do produto */
             $table->foreign('produto_id')->references('id')->on('produto')->onDelete('cascade');/*conexão com a chave primária (id)*/
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('produto');
+        Schema::dropIfExists('avaliacao');
     }
 };

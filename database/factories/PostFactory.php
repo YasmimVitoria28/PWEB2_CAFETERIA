@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Aluno;/*MUDAR */
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<pedido>
  */
-class postFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * Define the model's default state.
