@@ -10,11 +10,14 @@
 
     <style>
         body {
-            background-color: #1f0408;
-            color: #ffffff;
-            font-family: system-ui, -apple-system, sans-serif;
-            margin: 0;
-        }
+                background-image: linear-gradient(rgba(42, 8, 16, 0.75), rgba(42, 8, 16, 0.75)), url('/img/sobrenos.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                min-height: 100vh;
+                color: #E8BC73;
+                border-right: 1px solid #D4A35D;
+            }
         .sidebar {
             background-color: #2a0810;
             min-height: 100vh;
