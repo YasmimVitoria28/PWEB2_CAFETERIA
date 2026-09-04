@@ -1,33 +1,43 @@
 @extends('main')
-
 @section('titulo', isset($data) ? 'Editar Pedido' : 'Novo Pedido')
-
 @section('conteudo')
-<div class="card p-4" style="background-color:#2a0810;border:1px solid #D4A35D;">
-    <form action="{{ isset($data) ? route('post.update', $data->id) : route('post.store') }}" method="POST">
-        @csrf
-        @if(isset($data)) @method('PUT') @endif
-
-        <div class="mb-3">
-            <label class="form-label">Nº Pedido</label>
-            <input type="number" name="numero_pedido" class="form-control" value="{{ $data->numero_pedido ?? '' }}">
-            @error('numero_pedido') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Nome</label>
-            <input type="text" name="nome" class="form-control" value="{{ $data->nome ?? '' }}">
-            @error('nome') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Valor Total</label>
-            <input type="number" step="0.01" name="valor_t" class="form-control" value="{{ $data->valor_t ?? '' }}">
-            @error('valor_t') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-
-        <button class="btn btn-warning">Salvar</button>
-        <a href="{{ url('/post') }}" class="btn btn-outline-light">Cancelar</a>
-    </form>
-</div>
-@endsection
+    <div class="row">
+        @php
+            if (!empty($data->id)) {
+                $action = route('post.update', $data->id);
+            } else {
+                $action = route('post.store');
+            }
+        @endphp
+        <h4>Formulário Pedido</h4>
+        <form action="{{ $action }}" method="post">
+            @csrf
+            @if (!empty($data->id))
+                @method('PUT')
+            @endif
+            <input type="hidden" name="id" value="{{ old('id', $data->id ?? '') }}">
+            <div class="col-6">
+                <label for="numero_pedido">Nº Pedido</label>
+                <input type="number" name="numero_pedido" class="form-control"
+                    value="{{ old('numero_pedido', $data->numero_pedido ?? '') }}">
+                @error('numero_pedido') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+            <div class="col-6">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" class="form-control"
+                    value="{{ old('nome', $data->nome ?? '') }}">
+                @error('nome') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+            <div class="col-6">
+                <label for="valor_t">Valor Total</label>
+                <input type="number" step="0.01" name="valor_t" class="form-control"
+                    value="{{ old('valor_t', $data->valor_t ?? '') }}">
+                @error('valor_t') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="{{ url('post') }}" class="btn btn-primary"> Voltar</a>
+            </div>
+        </form>
+    </div>
+@stop
