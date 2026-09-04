@@ -38,7 +38,7 @@
             <tr>
                 <td>{{ $item->nome }}</td>
                 <td>R$ {{ number_format($item->preco_unit, 2, ',', '.') }}</td>
-                <td>{{ $item->categoria }}</td>
+                <td>{{ $item->categoria->nome }}</td>
                 <td>
                     <a href="{{ route('produto.edit', $item->id) }}" class="btn btn-sm btn-outline-warning">Editar</a>
                     <form action="{{ route('produto.destroy', $item->id) }}" method="POST" class="d-inline">

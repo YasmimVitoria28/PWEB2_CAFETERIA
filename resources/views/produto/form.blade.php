@@ -22,12 +22,14 @@
 
         <div class="mb-3">
             <label class="form-label">Categoria</label>
-            <select name="categoria" class="form-select">
-                @foreach(['Doces e tortas', 'Salgados', 'Cafés'] as $cat)
-                    <option value="{{ $cat }}" {{ (isset($data) && $data->categoria == $cat) ? 'selected' : '' }}>{{ $cat }}</option>
+            <select name="categoria_id" class="form-select">
+                @foreach($categorias as $item)
+                    <option value="{{ $item->id }}" {{ (isset($data) && $data->categoria_id == $item->id) ? 'selected' : '' }}>
+                        {{ $item->nome }}
+                    </option>
                 @endforeach
             </select>
-            @error('categoria') <small class="text-danger">{{ $message }}</small> @enderror
+            @error('categoria_id') <small class="text-danger">{{ $message }}</small> @enderror
         </div>
 
         <button class="btn btn-warning">Salvar</button>

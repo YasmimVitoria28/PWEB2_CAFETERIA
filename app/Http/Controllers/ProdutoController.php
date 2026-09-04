@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\Categoria;
 
 class ProdutoController extends Controller
 {
@@ -15,7 +16,8 @@ class ProdutoController extends Controller
 
     function create()
     {
-        return view('produto.form');
+        $categorias = Categoria::orderBy('nome')->get();
+        return view('produto.form', compact('categorias'));
     }
 
     function validateForm(Request $request)
@@ -23,11 +25,11 @@ class ProdutoController extends Controller
         $request->validate([
             'nome' => 'required',
             'preco_unit' => 'required|numeric',
-            'categoria' => 'required',
+            'categoria_id' => 'required',
         ], [
             'nome.required' => "O :attribute é obrigatorio",
             'preco_unit.required' => "O :attribute é obrigatorio",
-            'categoria.required' => "A :attribute é obrigatoria",
+            'categoria_id.required' => "A :attribute é obrigatoria",
         ]);
     }
 
@@ -41,7 +43,8 @@ class ProdutoController extends Controller
     function edit($id)
     {
         $data = Produto::find($id);
-        return view('produto.form', compact('data'));
+        $categorias = Categoria::orderBy('nome')->get();
+        return view('produto.form', compact('data', 'categorias'));
     }
 
     function update(Request $request, $id)
