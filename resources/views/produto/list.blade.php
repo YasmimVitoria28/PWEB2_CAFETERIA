@@ -42,7 +42,7 @@
                         <th scope='row'>{{ $item->id }}</th>
                         <td>{{ $item->nome }}</td>
                         <td>R$ {{ number_format($item->preco_unit, 2, ',', '.') }}</td>
-                        <td>{{ $item->categoria }}</td>
+                        <td>{{ $item->categoria->nome }}</td>
                         <td>
                             <a class='btn btn-warning' title='Editar' href="{{ route('produto.edit', $item->id) }}">Editar</a>
                         </td>
