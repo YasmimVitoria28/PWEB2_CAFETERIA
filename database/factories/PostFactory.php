@@ -27,7 +27,7 @@ class PostFactory extends Factory
 
         return [
             'numero_pedido' => fake()->numberBetween(1, 1000),// número de pedidos
-            'valor_t' => fake()->randomFloat(2, 10, 200 ),// decimal e até 200
+            'valor_t' => fake()->randomFloat(2, 10, 20 ),// decimal e até 20
             'nome' => fake()->randomElement($comidas),
         ];
     }
