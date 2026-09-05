@@ -18,5 +18,5 @@ class Categoria extends Model
     public function produtos()
     {
         return $this->hasMany(Produto::class);
-    }
+    }//chave
 }

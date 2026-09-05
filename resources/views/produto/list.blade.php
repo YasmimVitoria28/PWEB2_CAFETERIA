@@ -10,7 +10,7 @@
                     <label for="tipo">Tipo</label>
                     <select name="tipo" class="form-select">
                         <option value="nome">Nome</option>
-                        <option value="categoria">Categoria</option>
+                        <option value="categoria_id">Categoria</option>
                     </select>
                 </div>
                 <div class="col-5">

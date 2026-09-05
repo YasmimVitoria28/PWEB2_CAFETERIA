@@ -11,16 +11,16 @@ class ProdutoController extends Controller
     public function index()
     {
         $dados = Produto::all();
-        return view('produto.list')->with(['dados' => $dados]);
+        return view('produto.list')->with(['dados' => $dados]);//envia list
     }
 
     function create()
     {
         $categorias = Categoria::orderBy('nome')->get();
-        return view('produto.form', compact('categorias'));
+        return view('produto.form', compact('categorias'));//preenche selct
     }
 
-    function validateForm(Request $request)
+    function validateForm(Request $request)//obrig
     {
         $request->validate([
             'nome' => 'required',
@@ -46,7 +46,7 @@ class ProdutoController extends Controller
         $categorias = Categoria::orderBy('nome')->get();
         return view('produto.form', compact('data', 'categorias'));
     }
-
+//*
     function update(Request $request, $id)
     {
         $this->validateForm($request);

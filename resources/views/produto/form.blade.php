@@ -3,7 +3,7 @@
 @section('conteudo')
     <div class="row">
         @php
-            if (!empty($data->id)) {
+            if (!empty($data->id)) { //se tem, at se n, n
                 $action = route('produto.update', $data->id);
             } else {
                 $action = route('produto.store');
@@ -13,7 +13,7 @@
         <form action="{{ $action }}" method="post">
             @csrf
             @if (!empty($data->id))
-                @method('PUT')
+                @method('PUT')//edicao
             @endif
             <input type="hidden" name="id" value="{{ old('id', $data->id ?? '') }}">
             <div class="col-6">
@@ -28,17 +28,18 @@
                 @error('preco_unit') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
             <div class="col-6">
-                <label for="categoria">Categoria</label>
-                <select name="categoria" class="form-select">
-                    @foreach (['Doces e tortas', 'Salgados', 'Cafés'] as $cat)
-                        <option value="{{ $cat }}"
-                            {{ old('categoria', $data->categoria ?? '') == $cat ? 'selected' : '' }}>
-                            {{ $cat }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('categoria') <small class="text-danger">{{ $message }}</small> @enderror
-            </div>
+                    <label for="categoria_id">Categoria</label>
+                    <select name="categoria_id" class="form-select">
+                        <option value="">Selecione</option>
+                        @foreach ($categorias as $cat)
+                            <option value="{{ $cat->id }}"
+                                {{ old('categoria_id', $data->categoria_id ?? '') == $cat->id ? 'selected' : '' }}>
+                                {{ $cat->nome }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('categoria_id') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
             <div class="mt-2">
                 <button type="submit" class="btn btn-success">Salvar</button>
                 <a href="{{ url('produto') }}" class="btn btn-primary"> Voltar</a>
