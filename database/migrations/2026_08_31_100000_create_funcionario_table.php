@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('telefone', 20)->nullable();
             $table->string('login', 150);
             $table->string('senha');
+            $table->string('imagem', 180)->default('');
             $table->string('cpf', 11)->unique();
             $table->timestamps();
         });

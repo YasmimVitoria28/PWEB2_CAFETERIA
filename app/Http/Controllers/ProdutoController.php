@@ -26,12 +26,12 @@ class ProdutoController extends Controller
             'nome' => 'required',
             'preco_unit' => 'required|numeric',
             'categoria_id' => 'required',
-            'imagem' => 'nullable|image|mimes:png,jpg,jpeg',
+            'imagem' => 'image|mimes:png,jpg,jpeg',
         ], [
             'nome.required' => "O :attribute é obrigatorio",
             'preco_unit.required' => "O :attribute é obrigatorio",
             'categoria_id.required' => "A :attribute é obrigatoria",
-            'imagem' => 'nullable|image|mimes:png,jpg,jpeg',
+            'imagem' => 'image|mimes:png,jpg,jpeg',
         ]);
     }
 

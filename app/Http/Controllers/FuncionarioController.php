@@ -33,7 +33,6 @@ class FuncionarioController extends Controller
             'login.required' => "O :attribute é obrigatorio",
             'senha.required' => "A :attribute é obrigatoria",
             'cpf.required' => "A :attribute é obrigatoria",
-            'imagem' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
     }
 
@@ -48,7 +47,7 @@ class FuncionarioController extends Controller
             $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
             $diretorio = "imagem/funcionario/";
             $imagem->storeAs($diretorio, $nome_imagem, 'public');
-            $data['imagem'] = $diretorio . $nome_imagem;
+            $dados['imagem'] = $diretorio . $nome_imagem;
         }
 
         Funcionario::create($dados);
