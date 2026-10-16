@@ -26,16 +26,28 @@ class ProdutoController extends Controller
             'nome' => 'required',
             'preco_unit' => 'required|numeric',
             'categoria_id' => 'required',
+            'imagem' => 'nullable|image|mimes:png,jpg,jpeg',
         ], [
             'nome.required' => "O :attribute é obrigatorio",
             'preco_unit.required' => "O :attribute é obrigatorio",
             'categoria_id.required' => "A :attribute é obrigatoria",
+            'imagem' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
     }
 
     function store(Request $request)
     {
         $this->validateForm($request);
+
+        $imagem = $request->file('imagem');
+
+        if ($imagem) {
+            $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
+            $diretorio = "imagem/produto/";
+            $imagem->storeAs($diretorio, $nome_imagem, 'public');
+            $data['imagem'] = $diretorio . $nome_imagem;
+        }
+
         Produto::create($request->all());
         return redirect('produto')->with("success", 'Registro Salvo com sucesso!');
     }

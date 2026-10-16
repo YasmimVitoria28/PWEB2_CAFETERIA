@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 -- Copiando dados para a tabela db_pweb2_cafeteria.migrations: ~0 rows (aproximadamente)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2026_08_27_119000_create_categoria_table', 1),
-	(2, '2026_08_31_100000_create_usuario_table', 1),
+	(2, '2026_08_31_100000_create_funcionario_table', 1),
 	(3, '2026_08_31_100001_create_post_table', 1),
 	(4, '2026_08_31_100002_create_produto_table', 1),
 	(5, '2026_09_04_035455_create_cache_table', 1),
@@ -144,8 +144,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 	('0ZcP2WFTk44cucFK5BJVCMuyRHX6CV8EQUlrxOBV', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.138.0 Chrome/148.0.7778.280 Electron/42.10.0 Safari/537.36', 'eyJfdG9rZW4iOiJ4SXRaVmJld0REdHFzYTBUQTBYR1NSS0FJSkNIYWFzS3AyRmVRVWl5IiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9wcm9kdXRvIiwicm91dGUiOm51bGx9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19', 1789750987);
 
--- Copiando estrutura para tabela db_pweb2_cafeteria.usuarios
-CREATE TABLE IF NOT EXISTS `usuarios` (
+-- Copiando estrutura para tabela db_pweb2_cafeteria.funcionarios
+CREATE TABLE IF NOT EXISTS `funcionarios` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -155,11 +155,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `usuarios_email_unique` (`email`)
+  UNIQUE KEY `funcionarios_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela db_pweb2_cafeteria.usuarios: ~10 rows (aproximadamente)
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `telefone`, `login`, `senha`, `created_at`, `updated_at`) VALUES
+-- Copiando dados para a tabela db_pweb2_cafeteria.funcionarios: ~10 rows (aproximadamente)
+INSERT INTO `funcionarios` (`id`, `nome`, `email`, `telefone`, `login`, `senha`, `created_at`, `updated_at`) VALUES
 	(1, 'Angélica Leon Sobrinho', 'ortega.sophia@example.net', '(82) 97923-2799', 'quintana.jacomo', '$2y$12$gHsEGqnLeqelMEse9MA.zOv93xN/KrN2CyuyOLUY2c/CEnC12zyYa', '2026-09-18 19:51:52', '2026-09-18 19:51:52'),
 	(2, 'Dr. Joaquim Furtado Sobrinho', 'rvalentin@example.net', '(43) 91390-9758', 'danilo.leon', '$2y$12$GMst9BxN/YHkzK.nJgvowuBln3ngcmmbv40HaWc6MdRRIUGi0AG7a', '2026-09-18 19:51:52', '2026-09-18 19:51:52'),
 	(3, 'Luciano Lovato', 'sverdugo@example.com', '(11) 2283-0287', 'luiza99', '$2y$12$7ivVLJPrvHNUoTq08p9cuO7z3SPg7Yet6n5qTt5pfCHFLIhM347Xe', '2026-09-18 19:51:52', '2026-09-18 19:51:52'),

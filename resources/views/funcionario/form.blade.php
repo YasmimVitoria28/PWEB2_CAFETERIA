@@ -4,9 +4,9 @@
     <div class="row">
         @php
             if (!empty($data->id)) {
-                $action = route('usuario.update', $data->id);
+                $action = route('funcionario.update', $data->id);
             } else {
-                $action = route('usuario.store');
+                $action = route('funcionario.store');
             }
         @endphp
         <h4>Formulário Usuário</h4>
@@ -41,9 +41,25 @@
                 <input type="password" name="senha" class="form-control">
                 @error('senha') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
+            <div class="col-6">
+                <label for="cpf">CPF</label>
+                <input type="password" name="cpf" class="form-control">
+                @error('cpf') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="col-6">
+                <label for="imagem">Imagem</label>
+                @php
+                    $nome_imagem = !empty($data->imagem) ? $data->imagem : 'sem_imagem.jpg';
+                @endphp
+                <img src="/storage/{{ $nome_imagem }}" class="rounded-circle" width="200px" height="200px"
+                    alt="Imagem" />
+                <input type="file" name="imagem" class="form-control" value="{{ old('imagem', $data->imagem ?? '') }}">
+            </div>
+
             <div class="mt-2">
                 <button type="submit" class="btn btn-success">Salvar</button>
-                <a href="{{ url('usuario') }}" class="btn btn-primary"> Voltar</a>
+                <a href="{{ url('funcionario') }}" class="btn btn-primary"> Voltar</a>
             </div>
         </form>
     </div>

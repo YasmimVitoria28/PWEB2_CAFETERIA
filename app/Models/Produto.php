@@ -15,6 +15,7 @@ class Produto extends Model
         'nome',
         'preco_unit',
         'categoria_id',
+        'imagem',
     ];
 
     public function categoria()

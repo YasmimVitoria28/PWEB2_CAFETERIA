@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Usuario;
+use App\Models\Funcionario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Usuario>
+ * @extends Factory<Funcionario>
  */
-class UsuarioFactory extends Factory
+class FuncionarioFactory extends Factory
 {
     public function definition(): array
     {
@@ -18,6 +18,7 @@ class UsuarioFactory extends Factory
             'telefone' => fake()->phoneNumber(),
             'login' => fake()->userName(),
             'senha' => bcrypt('senha123'),
+            'cpf' => fake()->numerify(),
         ];
     }
 }

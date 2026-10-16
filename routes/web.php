@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CupomController;
 use App\Http\Controllers\FornecedorController;
@@ -20,14 +20,14 @@ Route::put('/produto/update/{id}', [ProdutoController::class, 'update'])->name('
 Route::delete('/produto/{id}', [ProdutoController::class, 'destroy'])->name('produto.destroy');
 Route::post('/produto/search', [ProdutoController::class, 'search'])->name('produto.search');
 
-// Usuario
-Route::get('/usuario', [UsuarioController::class, 'index'])->name('usuario.index');
-Route::get('/usuario/create', [UsuarioController::class, 'create']);
-Route::post('/usuario/store', [UsuarioController::class, 'store'])->name('usuario.store');
-Route::get('/usuario/edit/{id}', [UsuarioController::class, 'edit'])->name('usuario.edit');
-Route::put('/usuario/update/{id}', [UsuarioController::class, 'update'])->name('usuario.update');
-Route::delete('/usuario/{id}', [UsuarioController::class, 'destroy'])->name('usuario.destroy');
-Route::post('/usuario/search', [UsuarioController::class, 'search'])->name('usuario.search');
+// Funcionario
+Route::get('/funcionario', [FuncionarioController::class, 'index'])->name('funcionario.index');
+Route::get('/funcionario/create', [FuncionarioController::class, 'create']);
+Route::post('/funcionario/store', [FuncionarioController::class, 'store'])->name('funcionario.store');
+Route::get('/funcionario/edit/{id}', [FuncionarioController::class, 'edit'])->name('funcionario.edit');
+Route::put('/funcionario/update/{id}', [FuncionarioController::class, 'update'])->name('funcionario.update');
+Route::delete('/funcionario/{id}', [FuncionarioController::class, 'destroy'])->name('funcionario.destroy');
+Route::post('/funcionario/search', [FuncionarioController::class, 'search'])->name('funcionario.search');
 
 // Post
 Route::get('/post', [PostController::class, 'index'])->name('post.index');
