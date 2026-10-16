@@ -4,14 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CupomController;
+use App\Http\Controllers\FornecedorController;
 
 Route::get('/', function () {
     return view('main');
 });
 
-
 // Produto
-Route::get('/produto', [ProdutoController::class, 'index']);
+Route::get('/produto', [ProdutoController::class, 'index'])->name('produto.index');
 Route::get('/produto/create', [ProdutoController::class, 'create']);
 Route::post('/produto/store', [ProdutoController::class, 'store'])->name('produto.store');
 Route::get('/produto/edit/{id}', [ProdutoController::class, 'edit'])->name('produto.edit');
@@ -20,7 +21,7 @@ Route::delete('/produto/{id}', [ProdutoController::class, 'destroy'])->name('pro
 Route::post('/produto/search', [ProdutoController::class, 'search'])->name('produto.search');
 
 // Usuario
-Route::get('/usuario', [UsuarioController::class, 'index']);
+Route::get('/usuario', [UsuarioController::class, 'index'])->name('usuario.index');
 Route::get('/usuario/create', [UsuarioController::class, 'create']);
 Route::post('/usuario/store', [UsuarioController::class, 'store'])->name('usuario.store');
 Route::get('/usuario/edit/{id}', [UsuarioController::class, 'edit'])->name('usuario.edit');
@@ -29,10 +30,28 @@ Route::delete('/usuario/{id}', [UsuarioController::class, 'destroy'])->name('usu
 Route::post('/usuario/search', [UsuarioController::class, 'search'])->name('usuario.search');
 
 // Post
-Route::get('/post', [PostController::class, 'index']);
+Route::get('/post', [PostController::class, 'index'])->name('post.index');
 Route::get('/post/create', [PostController::class, 'create']);
 Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
 Route::get('/post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
 Route::put('/post/update/{id}', [PostController::class, 'update'])->name('post.update');
 Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 Route::post('/post/search', [PostController::class, 'search'])->name('post.search');
+
+// Cupom
+Route::get('/cupom', [CupomController::class, 'index'])->name('cupom.index'); 
+Route::get('/cupom/create', [CupomController::class, 'create']);
+Route::post('/cupom/store', [CupomController::class, 'store'])->name('cupom.store');
+Route::get('/cupom/edit/{id}', [CupomController::class, 'edit'])->name('cupom.edit');
+Route::put('/cupom/update/{id}', [CupomController::class, 'update'])->name('cupom.update');
+Route::delete('/cupom/{id}', [CupomController::class, 'destroy'])->name('cupom.destroy');
+Route::post('/cupom/search', [CupomController::class, 'search'])->name('cupom.search');
+
+// Fornecedor
+Route::get('/fornecedor', [FornecedorController::class, 'index'])->name('fornecedor.index');
+Route::get('/fornecedor/create', [FornecedorController::class, 'create']);
+Route::post('/fornecedor/store', [FornecedorController::class, 'store'])->name('fornecedor.store');
+Route::get('/fornecedor/edit/{id}', [FornecedorController::class, 'edit'])->name('fornecedor.edit');
+Route::put('/fornecedor/update/{id}', [FornecedorController::class, 'update'])->name('fornecedor.update');
+Route::delete('/fornecedor/{id}', [FornecedorController::class, 'destroy'])->name('fornecedor.destroy');
+Route::post('/fornecedor/search', [FornecedorController::class, 'search'])->name('fornecedor.search');
