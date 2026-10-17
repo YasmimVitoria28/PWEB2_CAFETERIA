@@ -28,6 +28,7 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
+                    <th scope="col">Foto</th>
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Preço</th>
@@ -38,7 +39,13 @@
             </thead>
             <tbody>
                 @foreach ($dados as $item)
+                    @php
+                        $nome_imagem = !empty($item->imagem) ? $item->imagem : 'sem_imagem.jpg';
+                    @endphp
                     <tr>
+                        <td>
+                            <img src="/storage/{{ $nome_imagem }}" class="rounded-circle" width="100px" height="100px" alt="Imagem" />
+                        </td>
                         <th scope='row'>{{ $item->id }}</th>
                         <td>{{ $item->nome }}</td>
                         <td>R$ {{ number_format($item->preco_unit, 2, ',', '.') }}</td>

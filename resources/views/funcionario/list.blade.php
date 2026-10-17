@@ -28,6 +28,7 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
+                    <th scope="col">Foto</th>
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Email</th>
@@ -44,13 +45,15 @@
                         $nome_imagem = !empty($item->imagem) ? $item->imagem : 'sem_imagem.jpg';
                     @endphp
                     <tr>
-                        <th> <img src="/storage/{{ $nome_imagem }}" class="rounded-circle" width="100px" height="100px"
-                                alt="Imagem" /></th>
+                        <td>
+                            <img src="/storage/{{ $nome_imagem }}" class="rounded-circle" width="100px" height="100px" alt="Imagem" />
+                        </td>
                         <th scope='row'>{{ $item->id }}</th>
                         <td>{{ $item->nome }}</td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->telefone }}</td>
                         <td>{{ $item->login }}</td>
+                        <td>{{ $item->cpf }}</td> <!-- Faltava renderizar esta linha -->
                         <td>
                             <a class='btn btn-warning' title='Editar' href="{{ route('funcionario.edit', $item->id) }}">Editar</a>
                         </td>

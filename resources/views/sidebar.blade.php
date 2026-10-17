@@ -17,7 +17,7 @@
     </li>
     <li class="nav-item">
         <a href="{{ url('/funcionario') }}" class="nav-link {{ request()->is('funcionario*') ? 'active-coffee' : '' }} rounded p-2">
-            <i class="bi bi-people me-2"></i> Usuários
+            <i class="bi bi-people me-2"></i> Funcionários
         </a>
     </li>
     <li class="nav-item">

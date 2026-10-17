@@ -61,14 +61,22 @@ class FuncionarioController extends Controller
     }
 
     function update(Request $request, $id)
-    {
-        $this->validateForm($request);
-        $dados = $request->all();
-        $dados['senha'] = bcrypt($request->senha);
-        Funcionario::find($id)->update($dados);
-        return redirect('funcionario')->with("success", 'Registro Atualizado com sucesso!');
+{
+    $this->validateForm($request);
+    $dados = $request->all();
+    $dados['senha'] = bcrypt($request->senha);
+    $imagem = $request->file('imagem');
+
+    if ($imagem) {
+        $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
+        $diretorio = "imagem/funcionario/";
+        $imagem->storeAs($diretorio, $nome_imagem, 'public');
+        $dados['imagem'] = $diretorio . $nome_imagem;
     }
 
+    Funcionario::find($id)->update($dados);
+    return redirect('funcionario')->with("success", 'Registro Atualizado com sucesso!');
+}
     function destroy($id)
     {
         Funcionario::destroy($id);

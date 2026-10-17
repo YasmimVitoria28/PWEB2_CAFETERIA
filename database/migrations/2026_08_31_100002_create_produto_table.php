@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('nome', 150);
             $table->decimal('preco_unit', 16, 2);
             $table->foreignId('categoria_id')->constrained('categoria');
+            $table->string('imagem', 180)->default('');
             $table->timestamps();
         });
     }

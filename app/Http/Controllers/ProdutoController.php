@@ -11,44 +11,43 @@ class ProdutoController extends Controller
     public function index()
     {
         $dados = Produto::all();
-        return view('produto.list')->with(['dados' => $dados]);//envia list
+        return view('produto.list')->with(['dados' => $dados]);
     }
 
     function create()
     {
         $categorias = Categoria::orderBy('nome')->get();
-        return view('produto.form', compact('categorias'));//preenche selct
+        return view('produto.form', compact('categorias'));
     }
 
-    function validateForm(Request $request)//obrig
+    function validateForm(Request $request)
     {
         $request->validate([
             'nome' => 'required',
             'preco_unit' => 'required|numeric',
             'categoria_id' => 'required',
-            'imagem' => 'image|mimes:png,jpg,jpeg',
+            'imagem' => 'nullable|image|mimes:png,jpg,jpeg',
         ], [
             'nome.required' => "O :attribute é obrigatorio",
             'preco_unit.required' => "O :attribute é obrigatorio",
             'categoria_id.required' => "A :attribute é obrigatoria",
-            'imagem' => 'image|mimes:png,jpg,jpeg',
         ]);
     }
 
     function store(Request $request)
     {
         $this->validateForm($request);
-
+        $dados = $request->all();
         $imagem = $request->file('imagem');
 
         if ($imagem) {
             $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
             $diretorio = "imagem/produto/";
             $imagem->storeAs($diretorio, $nome_imagem, 'public');
-            $data['imagem'] = $diretorio . $nome_imagem;
+            $dados['imagem'] = $diretorio . $nome_imagem;
         }
 
-        Produto::create($request->all());
+        Produto::create($dados);
         return redirect('produto')->with("success", 'Registro Salvo com sucesso!');
     }
 
@@ -58,11 +57,21 @@ class ProdutoController extends Controller
         $categorias = Categoria::orderBy('nome')->get();
         return view('produto.form', compact('data', 'categorias'));
     }
-//*
+
     function update(Request $request, $id)
     {
         $this->validateForm($request);
-        Produto::find($id)->update($request->all());
+        $dados = $request->all();
+        $imagem = $request->file('imagem');
+
+        if ($imagem) {
+            $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
+            $diretorio = "imagem/produto/";
+            $imagem->storeAs($diretorio, $nome_imagem, 'public');
+            $dados['imagem'] = $diretorio . $nome_imagem;
+        }
+
+        Produto::find($id)->update($dados);
         return redirect('produto')->with("success", 'Registro Atualizado com sucesso!');
     }
 

@@ -18,7 +18,7 @@ class FuncionarioFactory extends Factory
             'telefone' => fake()->phoneNumber(),
             'login' => fake()->userName(),
             'senha' => bcrypt('senha123'),
-            'cpf' => fake()->numerify(),
+            'cpf' => fake()->numerify('###########'),
         ];
     }
 }
