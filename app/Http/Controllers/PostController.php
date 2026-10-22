@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PostController extends Controller
 {
@@ -65,5 +66,20 @@ class PostController extends Controller
             $dados = Post::all();
         }
         return view('post.list', compact('dados'));
+    }
+
+    public function report($id) //relatório
+    {
+        $pedido = Post::findOrFail($id);
+
+        $data = [
+            'titulo' => 'Nota do Pedido Nº ' . $pedido->numero_pedido,
+            'date' => date('d/m/Y'),
+            'pedido' => $pedido
+        ];
+
+        $pdf = Pdf::loadView('post.report', $data);
+
+        return $pdf->download('nota_pedido_' . $pedido->numero_pedido . '.pdf');
     }
 }

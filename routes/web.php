@@ -37,6 +37,7 @@ Route::get('/post/edit/{id}', [PostController::class, 'edit'])->name('post.edit'
 Route::put('/post/update/{id}', [PostController::class, 'update'])->name('post.update');
 Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 Route::post('/post/search', [PostController::class, 'search'])->name('post.search');
+Route::get('/post/report/{id}', [PostController::class, 'report'])->name('post.report'); //relatório
 
 // Cupom
 Route::get('/cupom', [CupomController::class, 'index'])->name('cupom.index'); 
@@ -55,3 +56,4 @@ Route::get('/fornecedor/edit/{id}', [FornecedorController::class, 'edit'])->name
 Route::put('/fornecedor/update/{id}', [FornecedorController::class, 'update'])->name('fornecedor.update');
 Route::delete('/fornecedor/{id}', [FornecedorController::class, 'destroy'])->name('fornecedor.destroy');
 Route::post('/fornecedor/search', [FornecedorController::class, 'search'])->name('fornecedor.search');
+Route::get('/fornecedor/report', [FornecedorController::class, 'report'])->name('fornecedor.report'); //relatório

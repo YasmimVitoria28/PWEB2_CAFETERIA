@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Fornecedor;
 use App\Models\Produto;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class FornecedorController extends Controller
 {
@@ -75,5 +76,20 @@ class FornecedorController extends Controller
             $dados = Fornecedor::with('produto')->get();
         }
         return view('fornecedor.list', compact('dados'));
+    }
+
+    public function report() //relatorio
+    {
+        $fornecedores = Fornecedor::with('produto')->orderBy('nome')->get();
+
+        $data = [
+            'titulo' => 'Relatório Listagem de Fornecedores',
+            'date' => date('d/m/Y'),
+            'dados' => $fornecedores
+        ];
+
+        $pdf = Pdf::loadView('fornecedor.report', $data);
+
+        return $pdf->download('relatorio_fornecedores.pdf');
     }
 }

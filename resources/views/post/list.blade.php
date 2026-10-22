@@ -34,6 +34,7 @@
                     <th scope="col">Valor Total</th>
                     <th scope="col">Ação</th>
                     <th scope="col">Ação</th>
+                    <th scope="col">Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,6 +54,9 @@
                                 <button type="submit" class='btn btn-danger' title='Exclur'
                                     onclick='return confirm("Deseja Excluir?")'>Deletar</button>
                             </form>
+                        </td>
+                        <td>
+                            <a class='btn btn-secondary' title='Nota' href="{{ route('post.report', $item->id) }}">Nota</a>
                         </td>
                     </tr>
                 @endforeach
