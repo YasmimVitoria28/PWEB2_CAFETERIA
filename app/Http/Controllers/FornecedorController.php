@@ -12,45 +12,48 @@ class FornecedorController extends Controller
 {
     public function index()
     {
-        // Carrega os fornecedores trazendo também a relação com o produto
-        $dados = Fornecedor::with('produto')->get();
+        $dados = Fornecedor::with('produtos')->get();
         return view('fornecedor.list')->with(['dados' => $dados]);
     }
 
     public function create()
     {
         $produtos = Produto::all(); 
-
         return view('fornecedor.form', compact('produtos'));
     }
 
     public function validateForm(Request $request)
     {
         $request->validate([
-            'razao_social'  => 'required',
-            'cnpj'          => 'required',
-            'vendedor'      => 'required',
-            'telefone'      => 'required',
-            'produto_id'    => 'required',
+            'razao_social' => 'required',
+            'cnpj'         => 'required',
+            'vendedor'     => 'required',
+            'telefone'     => 'required',
+            'produtos'     => 'required|array',
         ], [
             'razao_social.required' => "O :attribute é obrigatório",
             'cnpj.required'         => "O :attribute é obrigatório",
-            'vendedor'              => "O :attribute é obrigatório",
+            'vendedor.required'     => "O :attribute é obrigatório",
             'telefone.required'     => "O :attribute é obrigatório",
-            'produto_id.required'   => "O :attribute é obrigatório",
+            'produtos.required'     => "Selecione ao menos um produto",
         ]);
     }
 
     public function store(Request $request)
     {
         $this->validateForm($request);
-        Fornecedor::create($request->all());
+
+        $fornecedor = Fornecedor::create($request->only(['razao_social', 'cnpj', 'vendedor', 'telefone']));
+
+        // Atribui o fornecedor aos produtos selecionados
+        Produto::whereIn('id', $request->produtos)->update(['fornecedor_id' => $fornecedor->id]);
+
         return redirect('fornecedor')->with("success", 'Registro Salvo com sucesso!');
     }
 
     public function edit($id)
     {
-        $data = Fornecedor::findOrFail($id);
+        $data = Fornecedor::with('produtos')->findOrFail($id);
         $produtos = Produto::all(); 
 
         return view('fornecedor.form', compact('data', 'produtos'));
@@ -59,12 +62,19 @@ class FornecedorController extends Controller
     public function update(Request $request, $id)
     {
         $this->validateForm($request);
-        Fornecedor::findOrFail($id)->update($request->all());
+
+        $fornecedor = Fornecedor::findOrFail($id);
+        $fornecedor->update($request->only(['razao_social', 'cnpj', 'vendedor', 'telefone']));
+
+        Produto::where('fornecedor_id', $fornecedor->id)->update(['fornecedor_id' => null]);
+        Produto::whereIn('id', $request->produtos)->update(['fornecedor_id' => $fornecedor->id]);
+
         return redirect('fornecedor')->with("success", 'Registro Atualizado com sucesso!');
     }
 
     public function destroy($id)
     {
+        Produto::where('fornecedor_id', $id)->update(['fornecedor_id' => null]);
         Fornecedor::destroy($id);
         return redirect('fornecedor')->with("success", 'Registro removido com sucesso!');
     }
@@ -72,18 +82,18 @@ class FornecedorController extends Controller
     public function search(Request $request)
     {
         if (!empty($request->valor)) {
-            $dados = Fornecedor::with('produto')
+            $dados = Fornecedor::with('produtos')
                 ->where($request->tipo, 'like', "%$request->valor%")
                 ->get();
         } else {
-            $dados = Fornecedor::with('produto')->get();
+            $dados = Fornecedor::with('produtos')->get();
         }
         return view('fornecedor.list', compact('dados'));
     }
 
-    public function report() //relatorio
+    public function report()
     {
-        $fornecedores = Fornecedor::with('produto')->orderBy('vendedor')->get();
+        $fornecedores = Fornecedor::with('produtos')->orderBy('vendedor')->get();
 
         $data = [
             'titulo' => 'Relatório Listagem de Fornecedores',
@@ -96,7 +106,7 @@ class FornecedorController extends Controller
         return $pdf->download('relatorio_fornecedores.pdf');
     }
 
-    public function chart(FornecedorProdutoChart $chart) //grafico
+    public function chart(FornecedorProdutoChart $chart)
     {
         return view('fornecedor.chart', ['chart' => $chart->build()]);
     }

@@ -9,11 +9,10 @@
                 <div class="col-2">
                     <label for="tipo">Tipo</label>
                     <select name="tipo" class="form-select">
-                        <option value="nome">Razão social</option>
+                        <option value="razao_social">Razão social</option>
                         <option value="cnpj">CNPJ</option>
-                        <option value="cnpj">Vendedor</option>
+                        <option value="vendedor">Vendedor</option>
                         <option value="telefone">Telefone</option>
-                        <option value="produto_id">Produto</option>
                     </select>
                 </div>
                 <div class="col-5">
@@ -38,7 +37,7 @@
                     <th scope="col">CNPJ</th>
                     <th scope="col">Vendedor</th>
                     <th scope="col">Telefone</th>
-                    <th scope="col">Produto</th>
+                    <th scope="col">Produtos</th>
                     <th scope="col">Ação</th>
                     <th scope="col">Ação</th>
                 </tr>
@@ -51,7 +50,7 @@
                         <td>{{ $item->cnpj }}</td>
                         <td>{{ $item->vendedor }}</td>
                         <td>{{ $item->telefone }}</td>
-                        <td>{{ $item->produto->nome }}</td>
+                        <td>{{ $item->produtos->pluck('nome')->implode(', ') ?: '-' }}</td>
                         <td>
                             <a class='btn btn-warning' title='Editar' href="{{ route('fornecedor.edit', $item->id) }}">Editar</a>
                         </td>

@@ -11,16 +11,30 @@ class PostFactory extends Factory
     {
 
         $comidas = [
-            'Expresso',
-            'Cappuccino',
-            'Pão de queijo',
-            'Croissant',
-            'Bolo de cenoura com chocolate',
-            'Cookie de chocolate',
-            'Café americano',
-            'Café gelado',
-            'Mocca',
-        ];
+    'Expresso',
+    'Cappuccino',
+    'Café americano',
+    'Mocca',
+    'Latte macchiato',
+    'Chocolate quente',
+    
+    'Café gelado',
+    'Frappuccino de caramelo',
+    'Chá gelado de pêssego',
+    'Soda italiana de maçã verde',
+
+    'Pão de queijo',
+    'Croissant',
+    'Empada de frango',
+    'Misto quente',
+    'Toast de abacate',
+
+    'Bolo de cenoura com chocolate',
+    'Cookie de chocolate',
+    'Torta de limão',
+    'Cheesecake de frutas vermelhas',
+    'Donut de doce de leite',
+];
 
         return [
             'numero_pedido' => fake()->numberBetween(1, 1000),// número de pedidos

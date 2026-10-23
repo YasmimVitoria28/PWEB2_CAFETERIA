@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('cnpj', 18); 
             $table->string('vendedor', 150);
             $table->string('telefone', 20)->nullable(); 
-            $table->foreignId('produto_id')->constrained('produto')->cascadeOnDelete();
             $table->timestamps();
         });
     }

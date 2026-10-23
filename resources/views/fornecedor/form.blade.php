@@ -23,43 +23,46 @@
                     value="{{ old('razao_social', $data->razao_social ?? '') }}">
                 @error('razao_social') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
-            
 
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="cnpj">CNPJ</label>
                 <input type="text" name="cnpj" class="form-control"
                     value="{{ old('cnpj', $data->cnpj ?? '') }}">
                 @error('cnpj') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
 
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="vendedor">Vendedor</label>
                 <input type="text" name="vendedor" id="vendedor" class="form-control" 
                     value="{{ old('vendedor', $data->vendedor ?? '') }}">
                 @error('vendedor') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
 
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <label for="telefone">Telefone</label>
                 <input type="text" name="telefone" class="form-control"
                     value="{{ old('telefone', $data->telefone ?? '') }}">
             </div>
 
             <div class="col-6 mb-3">
-                <label for="produto_id">Produto</label>
-                <select name="produto_id" id="produto_id" class="form-select">
-                    <option value="">Selecione o Produto</option>
+                <label class="form-label">Produtos</label>
+                <div class="border rounded p-2 form-control" style="max-height: 150px; overflow-y: auto;">
                     @foreach ($produtos as $produto)
-                        <option value="{{ $produto->id }}"
-                            {{ old('produto_id', $data->produto_id ?? '') == $produto->id ? 'selected' : '' }}>
-                            {{ $produto->nome }}
-                        </option>
+                        @php
+                            $selected = old('produtos', isset($data) ? $data->produtos->pluck('id')->toArray() : []);
+                        @endphp
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="produtos[]" value="{{ $produto->id }}" id="produto_{{ $produto->id }}"
+                                {{ in_array($produto->id, $selected) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="produto_{{ $produto->id }}">
+                                {{ $produto->nome }}
+                            </label>
+                        </div>
                     @endforeach
-                </select>
-                @error('produto_id') <small class="text-danger">{{ $message }}</small> @enderror
+                </div>
+                @error('produtos') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
 
-            
             <div class="mt-2">
                 <button type="submit" class="btn btn-success">Salvar</button>
                 <a href="{{ route('fornecedor.index') }}" class="btn btn-primary">Voltar</a>

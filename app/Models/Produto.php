@@ -15,11 +15,22 @@ class Produto extends Model
         'nome',
         'preco_unit',
         'categoria_id',
+        'fornecedor_id',
         'imagem',
     ];
 
     public function categoria()
     {
         return $this->belongsTo(Categoria::class);
+    }
+
+    public function fornecedor()
+    {
+        return $this->belongsTo(Fornecedor::class);
+    }
+
+    public function cupom()
+    {
+        return $this->hasOne(Cupom::class);
     }
 }

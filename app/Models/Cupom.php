@@ -10,10 +10,15 @@ class Cupom extends Model
     use HasFactory;
 
     protected $table = 'cupons';
+
     protected $fillable = [
         'produto_id',
         'codigo',
-        'desconto_percentual',    ];
-            
-}
+        'desconto_percentual',
+    ];
 
+    public function produto()
+    {
+        return $this->belongsTo(Produto::class);
+    }
+}

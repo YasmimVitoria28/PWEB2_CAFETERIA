@@ -16,11 +16,10 @@ class Fornecedor extends Model
         'cnpj',
         'vendedor',
         'telefone',
-        'produto_id',
     ];
 
-    public function produto()
+    public function produtos()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->hasMany(Produto::class);
     }
 }

@@ -88,7 +88,7 @@
                 <th>CNPJ</th>
                 <th>Vendedor</th>
                 <th>Telefone</th>
-                <th>Produto</th>
+                <th>Produtos</th>
             </tr>
         </thead>
         <tbody>
@@ -99,7 +99,7 @@
                     <td>{{ $item->cnpj }}</td>
                     <td>{{ $item->vendedor }}</td>
                     <td>{{ $item->telefone }}</td>
-                    <td>{{ $item->produto->nome ?? ' - ' }}</td> 
+                    <td>{{ $item->produtos->pluck('nome')->implode(', ') ?: '-' }}</td>
                 </tr>
             @endforeach
         </tbody>

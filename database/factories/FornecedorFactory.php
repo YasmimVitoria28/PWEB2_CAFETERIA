@@ -19,8 +19,6 @@ class FornecedorFactory extends Factory
             'cnpj' => fake()->cnpj(),
             'vendedor' => fake()->name(),
             'telefone' => fake()->phoneNumber(),
-            'produto_id' => Produto::inRandomOrder()->first()?->id ?? Produto::factory(),//busca e cria caso nao tenha
-
         ];
     }
 }
