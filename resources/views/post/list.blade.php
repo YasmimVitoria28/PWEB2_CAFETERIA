@@ -2,7 +2,6 @@
 @section('titulo', 'Listagem de Pedidos')
 @section('conteudo')
     <div class="row">
-        <h3>Listagem de Pedidos</h3>
         <form action="{{ route('post.search') }}" method="post">
             @csrf
             <div class="row">

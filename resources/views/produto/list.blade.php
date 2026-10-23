@@ -2,7 +2,6 @@
 @section('titulo', 'Listagem de Produtos')
 @section('conteudo')
     <div class="row">
-        <h3>Listagem de Produtos</h3>
         <form action="{{ route('produto.search') }}" method="post">
             @csrf
             <div class="row">
@@ -10,7 +9,7 @@
                     <label for="tipo">Tipo</label>
                     <select name="tipo" class="form-select">
                         <option value="nome">Nome</option>
-                        <option value="categoria_id">Categoria</option>
+                        <option value="categoria_id">Categoria (id)</option>
                     </select>
                 </div>
                 <div class="col-5">

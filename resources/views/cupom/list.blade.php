@@ -2,7 +2,6 @@
 @section('titulo', 'Listagem de Cupons')
 @section('conteudo')
     <div class="row">
-        <h3>Listagem de Cupons</h3>
         <form action="{{ route('cupom.search') }}" method="post">
             @csrf
             <div class="row">

@@ -2,7 +2,6 @@
 @section('titulo', 'Listagem de Fornecedores')
 @section('conteudo')
     <div class="row">
-        <h3>Listagem de Fornecedores</h3>
         <form action="{{ route('fornecedor.search') }}" method="post">
             @csrf
             <div class="row">
