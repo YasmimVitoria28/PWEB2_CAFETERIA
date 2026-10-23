@@ -70,7 +70,7 @@ class FuncionarioController extends Controller
     if ($imagem) {
         $nome_imagem = date('YmdiHs') . "." . $imagem->getClientOriginalExtension();
         $diretorio = "imagem/funcionario/";
-        $imagem->storeAs($diretorio, $nome_imagem, 'public');
+        $imagem->storeAs($diretorio, $nome_imagem, 'public');//salva
         $dados['imagem'] = $diretorio . $nome_imagem;
     }
 

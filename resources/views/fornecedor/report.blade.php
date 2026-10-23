@@ -99,7 +99,7 @@
                     <td>{{ $item->cnpj }}</td>
                     <td>{{ $item->vendedor }}</td>
                     <td>{{ $item->telefone }}</td>
-                    <td>{{ $item->produto->nome ?? ' - ' }}</td> <!-- mostra o nome do produto e se o fornecedor não tiver produto, mostra um traço em vez de dar erro -->
+                    <td>{{ $item->produto->nome ?? ' - ' }}</td> 
                 </tr>
             @endforeach
         </tbody>
