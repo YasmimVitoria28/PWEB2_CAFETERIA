@@ -9,8 +9,8 @@
                 <div class="col-2">
                     <label for="tipo">Tipo</label>
                     <select name="tipo" class="form-select">
-                        <option value="produto_id">Produto</option>
-                        <option value="codigo">Código</option>
+                        <option value="produto_id">Código produto</option>
+                        <option value="codigo">Código cupom</option>
                     </select>
                 </div>
                 <div class="col-5">
@@ -29,8 +29,8 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Produto</th>
-                    <th scope="col">Código</th>
+                    <th scope="col">Código produto</th>
+                    <th scope="col">Código Cupom</th>
                     <th scope="col">Desconto (%)</th>
                     <th scope="col">Ação</th>
                     <th scope="col">Ação</th>

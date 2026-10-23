@@ -32,7 +32,7 @@
             </div>
 
             <div class="col-6 mb-3">
-                <label for="codigo">Código Promocional</label>
+                <label for="codigo">Código cupom</label>
                 <input type="text" name="codigo" id="codigo" class="form-control" 
                     value="{{ old('codigo', $data->codigo ?? '') }}">
                 @error('codigo') <small class="text-danger">{{ $message }}</small> @enderror
