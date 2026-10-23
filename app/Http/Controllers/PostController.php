@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Charts\PedidoProdutoChart;
 
 class PostController extends Controller
 {
@@ -23,11 +24,11 @@ class PostController extends Controller
     {
         $request->validate([
             'numero_pedido' => 'required|integer',
-            'nome' => 'required',
+            'produto' => 'required',
             'valor_t' => 'required|numeric',
         ], [
             'numero_pedido.required' => "O :attribute é obrigatorio",
-            'nome.required' => "O :attribute é obrigatorio",
+            'produto.required' => "O :attribute é obrigatorio",
             'valor_t.required' => "O :attribute é obrigatorio",
         ]);
     }
@@ -81,5 +82,10 @@ class PostController extends Controller
         $pdf = Pdf::loadView('post.report', $data);
 
         return $pdf->download('nota_pedido_' . $pedido->numero_pedido . '.pdf');
+    }
+
+    public function chart(PedidoProdutoChart $chart) //grafico
+    {
+        return view('post.chart', ['chart' => $chart->build()]);
     }
 }

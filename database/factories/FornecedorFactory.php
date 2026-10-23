@@ -15,8 +15,9 @@ class FornecedorFactory extends Factory
     {
         return [
 
-            'nome' => fake()->name(),
-            'cnpj' => fake()->numerify('##############'),
+            'razao_social' => fake()->company(),
+            'cnpj' => fake()->cnpj(),
+            'vendedor' => fake()->name(),
             'telefone' => fake()->phoneNumber(),
             'produto_id' => Produto::inRandomOrder()->first()?->id ?? Produto::factory(),
 

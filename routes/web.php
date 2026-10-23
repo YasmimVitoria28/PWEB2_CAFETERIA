@@ -38,6 +38,7 @@ Route::put('/post/update/{id}', [PostController::class, 'update'])->name('post.u
 Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 Route::post('/post/search', [PostController::class, 'search'])->name('post.search');
 Route::get('/post/report/{id}', [PostController::class, 'report'])->name('post.report'); //relatório
+Route::get('/post/chart', [PostController::class, 'chart'])->name('post.chart'); //grafico
 
 // Cupom
 Route::get('/cupom', [CupomController::class, 'index'])->name('cupom.index'); 
@@ -57,3 +58,4 @@ Route::put('/fornecedor/update/{id}', [FornecedorController::class, 'update'])->
 Route::delete('/fornecedor/{id}', [FornecedorController::class, 'destroy'])->name('fornecedor.destroy');
 Route::post('/fornecedor/search', [FornecedorController::class, 'search'])->name('fornecedor.search');
 Route::get('/fornecedor/report', [FornecedorController::class, 'report'])->name('fornecedor.report'); //relatório
+Route::get('/fornecedor/chart', [FornecedorController::class, 'chart'])->name('fornecedor.chart');//grafico

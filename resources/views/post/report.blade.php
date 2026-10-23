@@ -91,7 +91,7 @@
             <tr>
                 <th>#</th>
                 <th>Nº do Pedido</th>
-                <th>Nome</th>
+                <th>Produto</th>
                 <th>Valor Total</th>
             </tr>
         </thead>
@@ -99,7 +99,7 @@
             <tr>
                 <td>{{ $pedido->id }}</td>
                 <td>{{ $pedido->numero_pedido }}</td>
-                <td>{{ $pedido->nome }}</td>
+                <td>{{ $pedido->produto }}</td>
                 <td>R$ {{ number_format($pedido->valor_t, 2, ',', '.') }}</td>
             </tr>
         </tbody>

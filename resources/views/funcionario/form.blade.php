@@ -38,12 +38,12 @@
         </div>
         <div class="col-6">
             <label for="senha">Senha</label>
-            <input type="password" name="senha" class="form-control">
+            <input type="password" name="senha" class="form-control" maxlength="11">
             @error('senha') <small class="text-danger">{{ $message }}</small> @enderror
         </div>
         <div class="col-6">
             <label for="cpf">CPF</label>
-            <input type="password" name="cpf" class="form-control">
+            <input type="text" name="cpf" class="form-control" value="{{ old('cpf', $data->cpf ?? '') }}">>
             @error('cpf') <small class="text-danger">{{ $message }}</small> @enderror
         </div>
 

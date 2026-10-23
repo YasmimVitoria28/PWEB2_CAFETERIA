@@ -84,8 +84,9 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nome</th>
+                <th>Razão social</th>
                 <th>CNPJ</th>
+                <th>Vendedor</th>
                 <th>Telefone</th>
                 <th>Produto</th>
             </tr>
@@ -94,8 +95,9 @@
             @foreach ($dados as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->nome }}</td>
+                    <td>{{ $item->razao_social }}</td>
                     <td>{{ $item->cnpj }}</td>
+                    <td>{{ $item->vendedor }}</td>
                     <td>{{ $item->telefone }}</td>
                     <td>{{ $item->produto->nome ?? ' - ' }}</td> <!-- mostra o nome do produto e se o fornecedor não tiver produto, mostra um traço em vez de dar erro -->
                 </tr>

@@ -9,8 +9,9 @@
                 <div class="col-2">
                     <label for="tipo">Tipo</label>
                     <select name="tipo" class="form-select">
-                        <option value="nome">Nome</option>
+                        <option value="nome">Razão social</option>
                         <option value="cnpj">CNPJ</option>
+                        <option value="cnpj">Vendedor</option>
                         <option value="telefone">Telefone</option>
                         <option value="produto_id">Produto</option>
                     </select>
@@ -23,6 +24,7 @@
                     <button type="submit" class="btn btn-primary">Buscar</button>
                     <a href="{{ url('fornecedor/create') }}" class="btn btn-success"> Novo</a>
                     <a href="{{ route('fornecedor.report') }}" class="btn btn-danger"> Relatório</a>
+                    <a href="{{ route('fornecedor.chart') }}" class="btn btn-warning"> Gráfico</a>
                 </div>
             </div>
         </form>
@@ -32,8 +34,9 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nome</th>
+                    <th scope="col">Razão social</th>
                     <th scope="col">CNPJ</th>
+                    <th scope="col">Vendedor</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">Produto</th>
                     <th scope="col">Ação</th>
@@ -44,8 +47,9 @@
                 @foreach ($dados as $item)
                     <tr>
                         <th scope='row'>{{ $item->id }}</th>
-                        <td>{{ $item->nome }}</td>
+                        <td>{{ $item->razao_social }}</td>
                         <td>{{ $item->cnpj }}</td>
+                        <td>{{ $item->vendedor }}</td>
                         <td>{{ $item->telefone }}</td>
                         <td>{{ $item->produto->nome }}</td>
                         <td>

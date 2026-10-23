@@ -18,17 +18,25 @@
             <input type="hidden" name="id" value="{{ old('id', $data->id ?? '') }}">
 
             <div class="col-6 mb-3">
-                <label for="nome">Nome do Fornecedor</label>
-                <input type="text" name="nome" id="nome" class="form-control" 
-                    value="{{ old('nome', $data->nome ?? '') }}">
-                @error('nome') <small class="text-danger">{{ $message }}</small> @enderror
+                <label for="razao_social">Razão social</label>
+                <input type="text" name="razao_social" id="razao_social" class="form-control" 
+                    value="{{ old('razao_social', $data->razao_social ?? '') }}">
+                @error('razao_social') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
+            
 
             <div class="col-6">
                 <label for="cnpj">CNPJ</label>
-                <input type="number" name="cnpj" class="form-control"
+                <input type="text" name="cnpj" class="form-control"
                     value="{{ old('cnpj', $data->cnpj ?? '') }}">
                 @error('cnpj') <small class="text-danger">{{ $message }}</small> @enderror
+            </div>
+
+            <div class="col-6">
+                <label for="vendedor">Vendedor</label>
+                <input type="text" name="vendedor" id="vendedor" class="form-control" 
+                    value="{{ old('vendedor', $data->vendedor ?? '') }}">
+                @error('vendedor') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
 
             <div class="col-6">

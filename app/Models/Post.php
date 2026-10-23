@@ -13,7 +13,7 @@ class Post extends Model
     protected $fillable = [
         'numero_pedido',
         'valor_t',
-        'nome',    ];
+        'produto',    ];
             
 }
 

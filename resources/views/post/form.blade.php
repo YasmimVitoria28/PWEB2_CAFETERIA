@@ -23,10 +23,10 @@
                 @error('numero_pedido') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
             <div class="col-6">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" class="form-control"
-                    value="{{ old('nome', $data->nome ?? '') }}">
-                @error('nome') <small class="text-danger">{{ $message }}</small> @enderror
+                <label for="produto">Produto</label>
+                <input type="text" name="produto" class="form-control"
+                    value="{{ old('produto', $data->produto ?? '') }}">
+                @error('produto') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
             <div class="col-6">
                 <label for="valor_t">Valor Total</label>

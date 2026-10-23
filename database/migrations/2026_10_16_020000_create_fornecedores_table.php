@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('fornecedores', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 150);
+            $table->string('razao_social', 150);
             $table->string('cnpj', 18); 
+            $table->string('vendedor', 150);
             $table->string('telefone', 20)->nullable(); 
             $table->foreignId('produto_id')->constrained('produto')->cascadeOnDelete();
             $table->timestamps();

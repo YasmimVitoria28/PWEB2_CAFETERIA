@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->id();
             $table->integer('numero_pedido');
-            $table->string('nome',150);
+            $table->string('produto',150);
             $table->decimal('valor_t',16);
             $table->timestamps();
         });

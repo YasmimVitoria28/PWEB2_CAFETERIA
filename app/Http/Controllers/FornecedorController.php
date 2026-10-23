@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Fornecedor;
 use App\Models\Produto;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Charts\FornecedorProdutoChart;
 
 class FornecedorController extends Controller
 {
@@ -26,15 +27,17 @@ class FornecedorController extends Controller
     public function validateForm(Request $request)
     {
         $request->validate([
-            'nome'       => 'required',
-            'cnpj'       => 'required',
-            'telefone'   => 'required',
-            'produto_id' => 'required',
+            'razao_social'  => 'required',
+            'cnpj'          => 'required',
+            'vendedor'      => 'required',
+            'telefone'      => 'required',
+            'produto_id'    => 'required',
         ], [
-            'nome.required'       => "O :attribute é obrigatório",
-            'cnpj.required'       => "O :attribute é obrigatório",
-            'telefone.required'   => "O :attribute é obrigatório",
-            'produto_id.required' => "O :attribute é obrigatório",
+            'razao_social.required' => "O :attribute é obrigatório",
+            'cnpj.required'         => "O :attribute é obrigatório",
+            'vendedor'              => "O :attribute é obrigatório",
+            'telefone.required'     => "O :attribute é obrigatório",
+            'produto_id.required'   => "O :attribute é obrigatório",
         ]);
     }
 
@@ -80,7 +83,7 @@ class FornecedorController extends Controller
 
     public function report() //relatorio
     {
-        $fornecedores = Fornecedor::with('produto')->orderBy('nome')->get();
+        $fornecedores = Fornecedor::with('produto')->orderBy('vendedor')->get();
 
         $data = [
             'titulo' => 'Relatório Listagem de Fornecedores',
@@ -91,5 +94,10 @@ class FornecedorController extends Controller
         $pdf = Pdf::loadView('fornecedor.report', $data);
 
         return $pdf->download('relatorio_fornecedores.pdf');
+    }
+
+    public function chart(FornecedorProdutoChart $chart) //grafico
+    {
+        return view('fornecedor.chart', ['chart' => $chart->build()]);
     }
 }
