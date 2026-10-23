@@ -22,12 +22,12 @@
     </li>
     <li class="nav-item">
         <a href="{{ url('/cupom') }}" class="nav-link {{ request()->is('cupom*') ? 'active-coffee' : '' }} rounded p-2">
-            <i class="bi bi-people me-2"></i> Cupons
+            <i class="bi bi-ticket-perforated me-2"></i> Cupons
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ url('/fornecedor') }}" class="nav-link {{ request()->is('fornecedor*') ? 'active-coffee' : '' }} rounded p-2">
-            <i class="bi bi-people me-2"></i> Fornecedores
+            <i class="bi bi-truck me-2"></i> Fornecedores
         </a>
     </li>
 </ul>

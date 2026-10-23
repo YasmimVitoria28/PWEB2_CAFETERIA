@@ -9,25 +9,25 @@ class FornecedorProdutoChart
 {
     public function build(): \ArielMejiaDev\LarapexCharts\PieChart
     {
-        $qtdFornecedorPorProduto = DB::table('fornecedores')
-            ->join('produto', 'produto.id', '=', 'fornecedores.produto_id')
-            ->select('produto.nome', DB::raw('count(1) as qtd'))
-            ->groupBy('produto.nome')
+        $qtdProdutosPorFornecedor = DB::table('produto')
+            ->join('fornecedores', 'fornecedores.id', '=', 'produto.fornecedor_id')
+            ->select('fornecedores.razao_social', DB::raw('count(produto.id) as qtd'))
+            ->groupBy('fornecedores.razao_social')
             ->orderBy('qtd', 'desc')
             ->get();
 
         $qtd = [];
-        $nomeProdutos = [];
+        $nomeFornecedores = [];
 
-        foreach ($qtdFornecedorPorProduto as $item) {
-            $nomeProdutos[] = $item->nome;
+        foreach ($qtdProdutosPorFornecedor as $item) {
+            $nomeFornecedores[] = $item->razao_social;
             $qtd[] = $item->qtd;
         }
 
         return (new LarapexChart)->pieChart()
-            ->setTitle('Fornecedores por produto')
+            ->setTitle('Produtos por Fornecedor')
             ->setSubtitle('Grão de Ouro') 
             ->addData($qtd)                          
-            ->setLabels($nomeProdutos);              
+            ->setLabels($nomeFornecedores);              
     }
 }
