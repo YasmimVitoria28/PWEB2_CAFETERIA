@@ -66,6 +66,7 @@ class FornecedorController extends Controller
         $fornecedor = Fornecedor::findOrFail($id);
         $fornecedor->update($request->only(['razao_social', 'cnpj', 'vendedor', 'telefone']));
 
+        // Desvincula os produtos antigos e vincula os novos
         Produto::where('fornecedor_id', $fornecedor->id)->update(['fornecedor_id' => null]);
         Produto::whereIn('id', $request->produtos)->update(['fornecedor_id' => $fornecedor->id]);
 

@@ -12,15 +12,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CupomFactory extends Factory
 {
     public function definition(): array
-    {
-        return [
-
-            'produto_id' => Produto::inRandomOrder()->first()?->id ?? Produto::factory(),
-            
-            'codigo' => strtoupper(fake()->unique()->bothify('CUPOM-###??')),
-            
-            'desconto_percentual' => fake()->numberBetween(5, 20),
-
-        ];
-    }
+{
+    return [
+        'produto_id' => Produto::factory(),
+        'codigo' => strtoupper(fake()->unique()->bothify('CUPOM-###??')),
+        'desconto_percentual' => fake()->numberBetween(5, 20),
+    ];
+}
 }

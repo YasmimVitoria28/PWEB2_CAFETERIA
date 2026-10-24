@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Console\ServeCommand;
 
 class Produto extends Model
 {
@@ -15,7 +16,7 @@ class Produto extends Model
         'nome',
         'preco_unit',
         'categoria_id',
-        'fornecedor_id',
+        'fornecedor_id',  
         'imagem',
     ];
 
